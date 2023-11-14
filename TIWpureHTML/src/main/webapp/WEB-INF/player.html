@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Playlist</title>
+<link rel="stylesheet" type="text/css" media="all"
+	href="../CSS/mystyle.css" th:href="@{/css/mystyle.css}" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body style="text-align: center">
+	<h1>
+		Stai riproducendo "<span th:text="${track.title}">trackTitle</span>" di <span
+			th:text="${track.author}">trackAuthor</span>
+	</h1>
+	
+	<br>
+	
+	<table class="table table-bordered" style="width: 66%">
+		<thead>
+			<tr>
+				<th>Titolo</th>
+				<th>Autore</th>
+				<th>Genere</th>
+				<th>Album</th>
+				<th>Anno</th>
+				<th>Album cover</th>
+				<th>Riproduci brano</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><span th:text="${track.title}">Title placeholder</span> 
+				</td>
+				<td><span th:text="${track.author}">Author placeholder</span> 
+				</td>
+				<td><span th:text="${track.genre}">Genre placeholder</span> 
+				</td>
+				<td><span th:text="${track.album}">Album placeholder</span> 
+				</td>
+				<td><span th:text="${track.year}">Anno placeholder</span> 
+				</td>
+				<td><img th:src="${track.image}" width="120" /></td>
+				<td><audio controls>
+						<source th:src="${track.audioTrack}" type="audio/mpeg">
+					</audio></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<div>
+		<a
+			th:href="@{/GoToPlaylist(idPlaylist=${idPlaylist}, currentBlockIndex=0)}">Go
+			back</a>
+	</div>
+
+	<br>
+	<br>
+	
+	<div>
+		<a th:href="@{Logout}">Logout</a>
+	</div>
+
+</body>
+</html>

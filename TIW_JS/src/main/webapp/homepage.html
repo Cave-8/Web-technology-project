@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Homepage</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/mystyle.css">
+<script type="text/javascript" src="./scripts/AJAXManager.js" charset="UTF-8" defer></script>
+<script type="text/javascript" src="./scripts/createTrack.js" charset="UTF-8" defer></script>
+<script type="text/javascript" src="./scripts/createPlaylist.js" charset="UTF-8" defer></script>
+<script type="text/javascript" src="./scripts/dragAndDrop.js" charset="UTF-8" defer></script>
+<script type="text/javascript" src="./scripts/orchestrator.js" charset="UTF-8" defer></script>
+</head>
+
+<body style="text-align: center">
+
+	<div id="Homepage">
+		<h1>Le tue playlist</h1>
+		<h2>Benvenuto!</h2>
+		<p>In questa pagina puoi visionare le playlist correnti o crearne di nuove</p>
+		<table class="table table-bordered" id="PlaylistTable" style="margin: auto; width: 66%;">
+			<thead>
+				<tr id="PlaylistTableHead" class="PlaylistTableHead">
+					<th>Nome playlist</th>
+					<th>Data di creazione</th>
+					<th>Riordino</th>
+				</tr>
+			</thead>
+			<tbody id="PlaylistTableBody">
+			</tbody>
+		</table>
+		<p id="NoPlaylist"></p>
+		<p id="PlaylistTableError"></p>
+
+		<br>
+
+		<h2>Crea nuove playlist</h2>
+		<form action="#" id="CreatePlaylistForm">
+			<fieldset>
+				Titolo: <input type="text" id="PlaylistName" name="Title" required>
+			</fieldset>
+		</form>
+		<div id="TracklistContainer"></div>
+		<br>
+		<input type="button" class="btn btn-primary" id="CreatePlaylistButton" value="Crea Playlist">
+
+		<p id="CreatePlaylistError"></p>
+
+		<br>
+
+		<h2>Crea nuovo brano</h2>
+		<form action="#" id="CreateTrackForm">
+			<fieldset>
+				Titolo: <input type="text" id="Title" name="Title" required> Autore: <input type="text" id="Author" name="Author" required><br>
+				<br> Album: <input type="text" id="Album" name="Album" required> Genere: <select id="Genre" name="Genre" required>
+					<option value="Art">Art</option>
+					<option value="Electronic">Electronic</option>
+					<option value="Funky">Funky</option>
+					<option value="Jazz">Jazz</option>
+					<option value="Dance">Dance</option>
+					<option value="Pop">Pop</option>
+					<option value="Reggae">Reggae</option>
+					<option value="RnB">RnB</option>
+					<option value="Rock">Rock</option>
+				</select> Anno: <input type="text" id="Year" name="Year" required><br> <br> Album cover: <input type="file" id="Image" name="Image"
+					accept="image/*" required> Audio track: <input type="file" id="AudioTrack" name="AudioTrack" accept="audio/*" required> <input
+					id="CreateTrackButton" type="button" class="btn btn-primary" value="Crea brano"><br>
+			</fieldset>
+		</form>
+		<p id="CreateTrackError"></p>
+	</div>
+
+	<div id="Playlist">
+		<h2>Brani in playlist</h2>
+		<table class="table table-bordered" id="TracksTable" style="margin: auto; width: 66%;">
+			<tbody id="TracksTableBody">
+			</tbody>
+		</table>
+		<p id="TracksTableError"></p>
+		<p id="NoTracks"></p>
+
+		<br>
+
+		<div>
+			<div style="display: inline-block;">
+				<form>
+					<fieldset>
+						<select id="TracksNotInPlaylist">
+						</select>
+						<p id="NoTracksToAdd"></p>
+					</fieldset>
+				</form>
+			</div>
+			<div style="display: inline-block;">
+				<div id="AddToPlaylist"></div>
+			</div>
+		</div>
+
+		<br> <input type="button" class="btn btn-primary" id="HomepageButtonPlaylist" value="Homepage">
+
+	</div>
+
+	<div id="Player">
+		<h2>Player</h2>
+		<table class="table table-bordered" id="PlayerTable" style="margin: auto; width: 66%;">
+			<thead id="PlayerHeader">
+			</thead>
+			<tbody id="PlayerBody">
+			</tbody>
+		</table>
+
+		<br> <div id="GoBackButtonDiv">
+		<input type="button" class="btn btn-primary" id="GoBackButtonPlayer" value="Go Back"></div>
+	</div>
+
+	<div id="Sorting">
+		<h2>Riordino</h2>
+		<p>Trascina gli elementi per personalizzare l'ordine, premi conferma ordinamento per confermare o reset per resettare all'ordine di default</p>
+		
+		<br>
+				
+		<table id="BeforeSorting" class="table table-bordered" style="margin: auto; width: 50%;">
+			<thead id="BeforeSortingHeader"></thead>
+			<tbody id="BeforeSortingBody"></tbody>
+		</table>
+		<p id="NoTracksToBeSorted">Nessun brano in playlist, premi "homepage" e aggiungine di nuovi</p>
+
+		<br>
+
+		<div id="ConfirmSorting"></div>
+
+		<br>
+		
+		<div id="ResetSorting"></div>
+
+		<br>
+		
+		<input type="button" class="btn btn-primary" id="HomepageButtonSorting" value="Homepage">
+		
+		<br>
+		
+		<p id="SortingError"></p>
+	</div>
+
+	<br>
+
+	<div id="Logout">
+		<button class="btn btn-primary">Logout</button>
+	</div>
+
+	<br>
+
+</body>
+</html>

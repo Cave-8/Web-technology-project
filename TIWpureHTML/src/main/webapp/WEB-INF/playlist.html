@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Playlist</title>
+<link rel="stylesheet" type="text/css" media="all"
+	href="../CSS/mystyle.css" th:href="@{/css/mystyle.css}" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body style="text-align: center">
+	<h1>
+		Sei in <span th:text="${playlist.playlistName}">
+			PlaylistName</span>
+	</h1>
+	
+	<div>
+		<h2>Brani in playlist</h2>
+	</div>
+	
+	<div th:if="${#lists.isEmpty(tracksInPlaylist)}">La playlist non contiene ancora brani musicali</div>
+
+	<div th:if="${not #lists.isEmpty(tracksInPlaylist)}">
+		<table class="table table-bordered" style="width: 66%">
+			<tbody>
+				<tr>
+					<td th:if="${previousBlockIndex != -1}">
+						<a th:href="@{GoToPlaylist(idPlaylist=${playlist.idPlaylist}, currentBlockIndex=${previousBlockIndex})}"><button class="btn btn-outline-secondary">Precedenti</button> </a>
+					</td>
+					<td th:each="t : ${visualizedTracks}"><a
+						th:href="@{/GoToTrack(idTrack=${t.idTrack}, idPlaylist=${playlist.idPlaylist})}">
+							<span th:text="${t.title}">Title placeholder</span>
+					</a><br> <br> <img th:src="${t.image}" width="120" /><br>
+						<br> <span th:text="${t.year}">Year placeholder</span><br>
+						<br> <a
+						th:href="@{RemoveFromPlaylist(idTrack=${t.idTrack}, idPlaylist=${playlist.idPlaylist})}">
+							<span>Rimuovi dalla playlist</span>
+					</a></td>
+					<td th:if="${nextBlockIndex != -1}">
+						<a th:href="@{GoToPlaylist(idPlaylist=${playlist.idPlaylist}, currentBlockIndex=${nextBlockIndex})}"><button class="btn btn-outline-secondary">Successivi</button> </a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div>
+		<h2>Aggiungi brano alla playlist</h2>
+	</div>
+	<div th:if="${#lists.isEmpty(tracksNotInPlaylist)}">Non ci sono canzoni da aggiungere alla playlist</div>
+		
+	<div th:if="${not #lists.isEmpty(tracksNotInPlaylist)}">
+		<form th:action="@{AddToPlaylist(idPlaylist=${playlist.idPlaylist})}"
+			method=POST>
+			<fieldset>
+				<select name="TitleToBeAdded" required>
+					<option th:each="t : ${tracksNotInPlaylist}"
+						th:value="${t.idTrack}" th:text="${t.title}+ ' - ' + ${t.author}"></option>
+				</select> <input type="submit" value="Aggiungi brano alla playlist">
+			</fieldset>
+		</form>
+	</div>
+	
+	<br>
+	
+	<div>
+		<a th:href="@{/homepage}">Home page</a>
+	</div>
+
+	<br>
+	
+	<div>
+		<a th:href="@{Logout}">Logout</a>
+	</div>
+</body>
+</html>

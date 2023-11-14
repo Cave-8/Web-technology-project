@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Homepage</title>
+<link rel="stylesheet" type="text/css" media="all" href="../CSS/mystyle.css" th:href="@{/css/mystyle.css}" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+
+<body style="text-align: center">
+	<h1>Le tue playlist</h1>
+	<h2>
+		Benvenuto <span th:text="${session.user.username}">User</span>
+	</h2>
+	<p>In questa pagina puoi creare nuove playlist o visionare quelle gia' create</p>
+
+	<div th:if="${#lists.isEmpty(playlists)}">Nessuna playlist creata</div>
+	<div th:if="${not #lists.isEmpty(playlists)}">
+		<table class="table table-bordered" style="width: 66%">
+			<thead>
+				<tr>
+					<th>Nome playlist</th>
+					<th>Data di creazione</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="p : ${playlists}">
+					<td><a th:href="@{/GoToPlaylist(idPlaylist=${p.idPlaylist}, currentBlockIndex=0)}"> <span th:text="${p.playlistName}">playlistName
+								placeholder</span>
+					</a></td>
+					<td><span th:text="${#dates.format(p.creationDate , 'dd.MM.yyyy')}">creationDate placeholder</span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	<br>
+	
+	<div>
+		<form th:action="@{/CreatePlaylist}" method="POST">
+			<h2>Crea nuova playlist</h2>
+			<fieldset>
+				Titolo: <input type="text" name="Title" required> <br> <span th:each="t : ${tracks}"><span th:text="${t.title}">AvailableTrack</span>
+					<span>-</span> <span th:text="${t.author}">TrackAuthor</span> <input type="checkbox" th:name="${t.idTrack}"><br> </span> <input
+					type="submit" value="Crea playlist">
+			</fieldset>
+		</form>
+	</div>
+	
+	<br>
+	
+	<div>
+		<h2>Crea nuovo brano</h2>
+
+		<form th:action="@{/CreateTrack}" method="POST" enctype="multipart/form-data">
+			<fieldset>
+				Titolo: <input type="text" name="Title" required> Autore: <input type="text" name="Author" required><br> <br>
+				Album: <input type="text" name="Album" required> Genere: <select name="Genre" required>
+					<option value="Art">Art</option>
+					<option value="Electronic">Electronic</option>
+					<option value="Funky">Funky</option>
+					<option value="Jazz">Jazz</option>
+					<option value="Dance">Dance</option>
+					<option value="Pop">Pop</option>
+					<option value="Reggae">Reggae</option>
+					<option value="RnB">RnB</option>
+					<option value="Rock">Rock</option>
+				</select> Anno: <input type="text" name="Year" required><br> <br> Album cover: <input type="file" name="Image" accept="image/*"
+					required> Audio track: <input type="file" name="AudioTrack" accept="audio/*" required> <input type="submit"
+					value="Crea traccia"><br>
+			</fieldset>
+		</form>
+	</div>
+
+	<div align="center">
+		<a th:href="@{/Logout}">Logout</a>
+	</div>
+	
+</body>
+</html>
