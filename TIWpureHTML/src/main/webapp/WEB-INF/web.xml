@@ -7,11 +7,11 @@
   </context-param>
   <context-param>
     <param-name>dbUser</param-name>
-    <param-value>root</param-value>
+    <param-value>YOUR_DBMS_USER</param-value>
   </context-param>
   <context-param>
     <param-name>dbPassword</param-name>
-    <param-value>sqlTIW</param-value>
+    <param-value>YOUR_DBMS_PASSWORD</param-value>
   </context-param>
   <context-param>
     <param-name>dbDriver</param-name>
@@ -19,11 +19,11 @@
   </context-param>
   <context-param>
     <param-name>imageDefaultPath</param-name>
-    <param-value>D:\POLITECNICO\Progetti TIW\project\resources\images</param-value>
+    <param-value>YOUR_PATH_FOR_IMAGES</param-value>
   </context-param>
   <context-param>
     <param-name>audioDefaultPath</param-name>
-    <param-value>D:\POLITECNICO\Progetti TIW\project\resources\audio tracks</param-value>
+    <param-value>YOUR_PATH_FOR_AUDIO_TRACKS</param-value>
   </context-param>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
