@@ -7,7 +7,7 @@ MySQL Workbench was used as DBMS.
 
 # Frontend
 Written in two versions (with a common backend):
-- A pure HTML version with the usage of Thymeleaf an template engine,
+- A pure HTML version with the usage of Thymeleaf as template engine,
 - A pure Javascript version.
   
 Both rely on basic HTML pages.
